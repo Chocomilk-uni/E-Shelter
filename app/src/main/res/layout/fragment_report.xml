@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.shelteradmin.report.ReportFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/action_bar"
+            layout="@layout/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/report_label_text"
+            style="@style/label_bold_extra_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/shelter_report"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/action_bar" />
+
+        <TextView
+            android:id="@+id/select_report_period_text"
+            style="@style/label_default_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:text="@string/select_report_period"
+            app:layout_constraintBottom_toTopOf="@+id/get_report_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/report_label_text"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/select_report_period_button"
+            style="@style/Widget.App.ButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/rounded_corner_orange_default"
+            android:text="@string/select_report_period_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/report_period_text" />
+
+        <TextView
+            android:id="@+id/report_period_text"
+            style="@style/label_default_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/report_period"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select_report_period_text" />
+
+        <TextView
+            android:id="@+id/select_format_text"
+            style="@style/label_default_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="@string/select_format"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select_report_period_button" />
+
+        <Button
+            android:id="@+id/get_report_button"
+            style="@style/default_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner_orange_default"
+            android:text="@string/get_report"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/filters_chip_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/select_format_text"
+            app:singleSelection="true">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/docx_chip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:width="120dp"
+                    android:background="@drawable/rounded_corner_orange_click"
+                    android:fontFamily="@font/proximanova_bold"
+                    android:text="@string/docx"
+                    android:textAlignment="center"
+                    android:textColor="@color/secondary_orange"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/xlsx_chip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="120dp"
+                    android:background="@drawable/rounded_corner_turq_click"
+                    android:fontFamily="@font/proximanova_bold"
+                    android:text="@string/xlsx"
+                    android:textAlignment="center"
+                    android:textColor="@color/primary_turquoise"
+                    android:textSize="16sp"
+                    app:checkedIconTint="@color/primary_turquoise"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="283dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/pdf_chip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:width="120dp"
+                    android:background="@drawable/rounded_corner_turq_dark_click"
+                    android:fontFamily="@font/proximanova_bold"
+                    android:text="@string/pdf"
+                    android:textAlignment="center"
+                    android:textColor="@color/primary_dark_turquoise"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_turquoise"
+            android:soundEffectsEnabled="true"
+            app:itemIconSize="35dp"
+            app:itemIconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/bottom_navigation_shelter_admin">
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

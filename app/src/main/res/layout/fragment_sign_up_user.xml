@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.user.signup.SignUpUserFragment">
+
+    <data>
+
+        <variable
+            name="signUpViewModel"
+            type="com.example.e_shelter.screens.user.signup.SignUpUserViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="50dp"
+            android:descendantFocusability="blocksDescendants"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_label_text"
+            tools:layout_editor_absoluteX="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <TextView
+                    android:id="@+id/email_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/email"
+                    app:layout_constraintStart_toStartOf="@+id/phone_edit"
+                    app:layout_constraintTop_toBottomOf="@+id/phone_edit" />
+
+                <EditText
+                    android:id="@+id/name_edit"
+                    style="@style/label_default_large"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="50dp"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/name_label_text"
+                    app:layout_constraintTop_toBottomOf="@+id/name_label_text"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/phone_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/phone_number"
+                    app:layout_constraintStart_toStartOf="@+id/name_edit"
+                    app:layout_constraintTop_toBottomOf="@+id/name_edit" />
+
+                <TextView
+                    android:id="@+id/name_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/email_edit"
+                    style="@style/label_default_large"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="50dp"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/email_label_text"
+                    app:layout_constraintTop_toBottomOf="@+id/email_label_text"
+                    tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/phone_edit"
+                    style="@style/label_default_large"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="50dp"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="phone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/phone_label_text"
+                    app:layout_constraintTop_toBottomOf="@+id/phone_label_text"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/password_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/password"
+                    app:layout_constraintStart_toStartOf="@+id/email_edit"
+                    app:layout_constraintTop_toBottomOf="@+id/email_edit" />
+
+                <Button
+                    android:id="@+id/sign_up_button"
+                    style="@style/default_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_corner_orange_default"
+                    android:text="@string/sign_up"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/password_edit" />
+
+                <EditText
+                    android:id="@+id/password_edit"
+                    style="@style/label_default_large"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="50dp"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/password_label_text"
+                    app:layout_constraintTop_toBottomOf="@+id/password_label_text"
+                    tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/logo_text"
+            style="@style/label_logo_style_auth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="@string/e_shelter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sign_up_label_text"
+            style="@style/label_bold_extra_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:text="@string/signing_up"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo_text" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

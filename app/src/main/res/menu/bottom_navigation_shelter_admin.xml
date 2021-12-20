@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/applications"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_contact_phone_24"
+        android:title=""/>
+    <item
+        android:id="@+id/report"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_insert_chart_24"
+        android:title=""/>
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_home_30"
+        android:title=""/>
+    <item
+        android:id="@+id/add_animal"
+        android:enabled="true"
+        android:icon="@drawable/vector_add_animal"
+        android:title="" />
+</menu>

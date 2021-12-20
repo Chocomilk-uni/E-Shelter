@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.shelteradmin.signup.SignUpShelterAdminFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_info_text"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="-16dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/city_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:text="@string/city"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/city_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="50dp"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/city_label_text"
+                    app:layout_constraintTop_toBottomOf="@+id/city_label_text"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/address_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/address"
+                    app:layout_constraintStart_toStartOf="@+id/city_edit"
+                    app:layout_constraintTop_toBottomOf="@+id/city_edit" />
+
+                <EditText
+                    android:id="@+id/address_edit"
+                    style="@style/label_default_large"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="50dp"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/address_label_text"
+                    app:layout_constraintTop_toBottomOf="@+id/address_label_text"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/shelter_name_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/shelter_name_hint"
+                    app:layout_constraintStart_toStartOf="@+id/address_edit"
+                    app:layout_constraintTop_toBottomOf="@+id/address_edit" />
+
+                <EditText
+                    android:id="@+id/shelter_name_edit"
+                    style="@style/label_default_large"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="50dp"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/shelter_name_label_text"
+                    app:layout_constraintTop_toBottomOf="@+id/shelter_name_label_text"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/social_links_edit"
+                    style="@style/label_default_large"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="50dp"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/social_links_label_text"
+                    app:layout_constraintTop_toBottomOf="@+id/social_links_label_text"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/social_links_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/social_links"
+                    app:layout_constraintStart_toStartOf="@+id/shelter_name_edit"
+                    app:layout_constraintTop_toBottomOf="@+id/shelter_name_edit" />
+
+                <TextView
+                    android:id="@+id/email_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/email"
+                    app:layout_constraintStart_toStartOf="@+id/social_links_edit"
+                    app:layout_constraintTop_toBottomOf="@+id/social_links_edit" />
+
+                <EditText
+                    android:id="@+id/email_edit"
+                    style="@style/label_default_large"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="50dp"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/email_label_text"
+                    app:layout_constraintTop_toBottomOf="@id/email_label_text"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/send_application_button"
+                    style="@style/default_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@drawable/rounded_corner_orange_default"
+                    android:text="@string/send_application_shelter_admin"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/email_edit"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/email_edit"
+                    app:layout_constraintTop_toBottomOf="@id/email_edit"
+                    app:layout_constraintVertical_bias="0.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/logo_text"
+            style="@style/label_logo_style_auth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/e_shelter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sign_up_info_text"
+            style="@style/label_default_large"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/shelter_admin_sign_up_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo_text" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="label_logo_style_auth">
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textSize">42sp</item>
+        <item name="android:textColor">@color/primary_turquoise</item>
+    </style>
+
+    <style name="label_default">
+        <item name="fontFamily">@font/proximanova_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="label_default_large">
+        <item name="fontFamily">@font/proximanova_regular</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="label_default_bold">
+        <item name="fontFamily">@font/proximanova_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="label_bold_extra_large">
+        <item name="fontFamily">@font/proximanova_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="label_bold_large">
+        <item name="fontFamily">@font/proximanova_bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="label_extra_bold_extra_large">
+        <item name="fontFamily">@font/proximanova_extrabold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="label_extra_bold_large">
+        <item name="fontFamily">@font/proximanova_extrabold</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="default_button">
+        <item name="fontFamily">@font/proximanova_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.App.ButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/GreenButtonThemeOverlay</item>
+        <item name="fontFamily">@font/proximanova_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="GreenButtonThemeOverlay">
+        <item name="colorPrimary">@color/primary_turquoise</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="ThemeOverlay_MaterialComponents_MaterialAlertDialog_FullWidthButtons">
+
+    </style>
+</resources>

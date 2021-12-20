@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="species">
+        <item>Собака</item>
+        <item>Кот</item>
+        <item>Хорёк</item>
+        <item>Крыса</item>
+        <item>Попугай</item>
+    </string-array>
+
+    <string-array name="genders">
+        <item>Мальчик</item>
+        <item>Девочка</item>
+    </string-array>
+
+    <string-array name="animal_status">
+        <item>Ждёт семью</item>
+        <item>На передержке</item>
+        <item>Пристроен(-а) в семью</item>
+    </string-array>
+</resources>

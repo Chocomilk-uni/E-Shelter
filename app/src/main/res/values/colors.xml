@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#24A19D</color>
+
+    <!--Primary color variants-->
+    <color name="primary_turquoise">#24A19D</color>
+    <color name="primary_light_turquoise">#6EBFB5</color>
+    <color name="primary_dark_turquoise">#19706d</color>
+
+    <!--Secondary color variants-->
+    <color name="secondary_orange">#FF5F40</color>
+    <color name="secondary_light_orange">#ff7f66</color>
+    <color name="secondary_dark_orange">#c41c00</color>
+
+    <!--Other colors-->
+    <color name="complementing_light_green">#90CAAA</color>
+    <color name="gray">#455355</color>
+    <color name="favourites">#FF9FBA</color>
+    <color name="light_gray">#D1D1D1</color>
+    <color name="red">#FB7F7F</color>
+</resources>

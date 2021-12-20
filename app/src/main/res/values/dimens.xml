@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_small">6dp</dimen>
+    <dimen name="action_bar_text_size">24sp</dimen>
+    <dimen name="margin_small">6dp</dimen>
+    <dimen name="margin_logo_auth">100dp</dimen>
+    <dimen name="margin_top_large">40dp</dimen>
+    <dimen name="button_edit_size">35dp</dimen>
+    <dimen name="line_size">0.2dp</dimen>
+    <dimen name="button_favourites_size">45dp</dimen>
+</resources>

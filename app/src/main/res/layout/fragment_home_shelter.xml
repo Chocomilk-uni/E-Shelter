@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.shelteradmin.home.HomeShelterFragment">
+
+    <data>
+
+        <variable
+            name="homeShelterViewModel"
+            type="com.example.e_shelter.screens.shelteradmin.home.HomeShelterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/action_bar"
+            layout="@layout/toolbar"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shelter_logo_image"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/shelter_logo"
+            android:focusable="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/action_bar"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            app:srcCompat="@color/complementing_light_green" />
+
+        <TextView
+            android:id="@+id/add_shelter_logo_text"
+            style="@style/label_default_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/complementing_light_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/add_shelter_logo"
+            android:textColor="#263238"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/shelter_logo_image"
+            app:layout_constraintEnd_toEndOf="@+id/shelter_logo_image"
+            app:layout_constraintHorizontal_bias="0.629"
+            app:layout_constraintStart_toStartOf="@+id/shelter_logo_image"
+            app:layout_constraintTop_toTopOf="@+id/shelter_logo_image"
+            app:layout_constraintVertical_bias="0.496" />
+
+        <TextView
+            android:id="@+id/shelter_name_label_text"
+            style="@style/label_bold_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/shelter"
+            app:layout_constraintStart_toEndOf="@+id/shelter_logo_image"
+            app:layout_constraintTop_toTopOf="@+id/shelter_logo_image" />
+
+        <TextView
+            android:id="@+id/shelter_name_text"
+            style="@style/label_default"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="10dp"
+            android:text="@{homeShelterViewModel.shelterNameString}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/shelter_name_label_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/shelter_name_label_text" />
+
+        <EditText
+            android:id="@+id/shelter_name_edit"
+            style="@style/label_default"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="@string/shelter_name_hint"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:text="@{homeShelterViewModel.shelter.name}"
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBaselineOf="@+id/shelter_name_label_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/shelter_name_label_text"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+        <ImageView
+            android:id="@+id/address_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:contentDescription="@string/address"
+            android:src="@drawable/ic_baseline_pin_drop_24"
+            app:layout_constraintStart_toEndOf="@+id/shelter_logo_image"
+            app:layout_constraintTop_toBottomOf="@+id/shelter_name_label_text" />
+
+        <EditText
+            android:id="@+id/city_edit"
+            style="@style/label_default"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="@string/city"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:text="@{homeShelterViewModel.shelter.city}"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/address_image"
+            app:layout_constraintTop_toBottomOf="@+id/shelter_name_text"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/address_text"
+            style="@style/label_default"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{homeShelterViewModel.addressString}"
+            app:layout_constraintBottom_toBottomOf="@+id/address_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/address_image" />
+
+        <EditText
+            android:id="@+id/address_edit"
+            style="@style/label_default"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="@string/address"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:text="@{homeShelterViewModel.shelter.address}"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/address_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/address_image"
+            app:layout_constraintTop_toBottomOf="@+id/city_edit"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+        <ImageView
+            android:id="@+id/phone_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:contentDescription="@string/phone_number"
+            android:src="@drawable/ic_baseline_local_phone_24"
+            app:layout_constraintStart_toEndOf="@+id/shelter_logo_image"
+            app:layout_constraintTop_toBottomOf="@+id/address_image" />
+
+        <TextView
+            android:id="@+id/phone_text"
+            style="@style/label_default"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{homeShelterViewModel.shelter.phoneNumber}"
+            app:layout_constraintBottom_toBottomOf="@+id/phone_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/phone_image" />
+
+        <EditText
+            android:id="@+id/phone_edit"
+            style="@style/label_default"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="@string/phone_number"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:text="@{homeShelterViewModel.shelter.phoneNumber}"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/phone_image"
+            app:layout_constraintTop_toBottomOf="@id/address_edit"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_size"
+            android:layout_marginTop="40dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shelter_logo_image" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_turquoise"
+            android:soundEffectsEnabled="true"
+            app:itemIconSize="35dp"
+            app:itemIconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_navigation_shelter_admin" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/filters_chip_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:checkedChip="@id/all_chip"
+            app:chipSpacingHorizontal="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/line"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/all_chip"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:width="120dp"
+                android:fontFamily="@font/proximanova_bold"
+                android:text="@string/all"
+                android:textAlignment="center"
+                android:textColor="@color/primary_turquoise"
+                android:textSize="16sp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/cats_chip"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="120dp"
+                android:fontFamily="@font/proximanova_bold"
+                android:text="@string/cats"
+                android:textAlignment="center"
+                android:textColor="@color/secondary_orange"
+                android:textSize="16sp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/dogs_chip"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="120dp"
+                android:fontFamily="@font/proximanova_bold"
+                android:text="@string/dogs"
+                android:textAlignment="center"
+                android:textColor="@color/primary_turquoise"
+                android:textSize="16sp"
+                app:checkedIconTint="@color/primary_turquoise"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="283dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/exotic_chip"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="120dp"
+                android:fontFamily="@font/proximanova_bold"
+                android:text="@string/exotic"
+                android:textAlignment="center"
+                android:textColor="@color/primary_dark_turquoise"
+                android:textSize="16sp" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <View
+            android:id="@+id/line_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_size"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@+id/filters_chip_group"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <ImageButton
+            android:id="@+id/edit_button"
+            android:layout_width="@dimen/button_edit_size"
+            android:layout_height="@dimen/button_edit_size"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/rounded_corner_orange_default"
+            android:src="@drawable/button_edit_orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_text"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/save_button"
+            android:layout_width="@dimen/button_edit_size"
+            android:layout_height="@dimen/button_edit_size"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/rounded_corner_orange_default"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/button_save_orange"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/phone_edit"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/animal_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line_2">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

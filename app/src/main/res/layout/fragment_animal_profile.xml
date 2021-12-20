@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.animalprofile.AnimalProfileFragment">
+
+    <data>
+        <variable
+            name="animalProfileViewModel"
+            type="com.example.e_shelter.screens.animalprofile.AnimalProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/action_bar"
+            layout="@layout/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/animal_photo"
+            android:layout_width="210dp"
+            android:layout_height="210dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/animal_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/action_bar"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            app:srcCompat="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/pet_name_text"
+            style="@style/label_extra_bold_extra_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/pet_name"
+            android:text="@{animalProfileViewModel.animal.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/animal_photo" />
+
+        <ImageButton
+            android:id="@+id/add_to_favourites_button"
+            android:layout_width="@dimen/button_favourites_size"
+            android:layout_height="@dimen/button_favourites_size"
+            android:layout_marginStart="-20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/rounded_corner_orange_default"
+            android:src="@drawable/button_add_to_favourites"
+            app:layout_constraintBottom_toBottomOf="@+id/animal_photo"
+            app:layout_constraintStart_toEndOf="@+id/animal_photo"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pet_name_text"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/age_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/age"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/age_text"
+                    style="@style/label_default_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    tools:text="@string/age"
+                    android:text="@{animalProfileViewModel.ageString}"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/age_label_text"
+                    app:layout_constraintStart_toEndOf="@+id/age_label_text" />
+
+                <TextView
+                    android:id="@+id/gender_text"
+                    style="@style/label_default_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    tools:text="@string/gender"
+                    android:text="@{animalProfileViewModel.animal.gender}"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/gender_label_text"
+                    app:layout_constraintStart_toEndOf="@+id/gender_label_text" />
+
+                <TextView
+                    android:id="@+id/breed_text"
+                    style="@style/label_default_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    tools:text="@string/breed"
+                    android:text="@{animalProfileViewModel.animal.breed}"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/breed_label_text"
+                    app:layout_constraintStart_toEndOf="@+id/breed_label_text" />
+
+                <TextView
+                    android:id="@+id/gender_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/gender"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/age_label_text" />
+
+                <TextView
+                    android:id="@+id/breed_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/breed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/gender_label_text" />
+
+                <TextView
+                    android:id="@+id/sterilised_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/sterilisation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/breed_label_text" />
+
+                <TextView
+                    android:id="@+id/vaccinated_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/vaccinations"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sterilised_label_text" />
+
+                <CheckBox
+                    android:id="@+id/sterilised_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:clickable="false"
+                    android:checked="@{animalProfileViewModel.animal.sterilised}"
+                    android:buttonTint="@color/secondary_orange"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/sterilised_label_text"
+                    app:layout_constraintStart_toEndOf="@+id/sterilised_label_text" />
+
+                <CheckBox
+                    android:id="@+id/vaccinated_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:clickable="false"
+                    android:checked="@{animalProfileViewModel.animal.vaccinated}"
+                    android:buttonTint="@color/secondary_orange"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/vaccinated_label_text"
+                    app:layout_constraintStart_toEndOf="@+id/vaccinated_label_text" />
+
+                <TextView
+                    android:id="@+id/description_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vaccinated_label_text" />
+
+                <TextView
+                    android:id="@+id/description_text"
+                    style="@style/label_default_large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="70dp"
+                    android:maxLines="5"
+                    android:minLines="2"
+                    tools:text="@string/description"
+                    android:text="@{animalProfileViewModel.animal.description}"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description_label_text" />
+
+                <TextView
+                    android:id="@+id/shelter_address_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/shelter_address"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shelter_label_text" />
+
+                <TextView
+                    android:id="@+id/shelter_address_text"
+                    style="@style/label_default_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="@{animalProfileViewModel.addressString}"
+                    app:layout_constraintBottom_toTopOf="@+id/apply_for_adoption_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/shelter_address_label_text"
+                    tools:text="@string/address" />
+
+                <TextView
+                    android:id="@+id/shelter_label_text"
+                    style="@style/label_bold_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/shelter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description_text" />
+
+                <TextView
+                    android:id="@+id/shelter_text"
+                    style="@style/label_default_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    tools:text="@string/shelter_name"
+                    android:text="@{animalProfileViewModel.shelterNameString}"
+                    app:layout_constraintBaseline_toBaselineOf="@id/shelter_label_text"
+                    app:layout_constraintStart_toEndOf="@id/shelter_label_text" />
+
+                <Button
+                    android:id="@+id/apply_for_adoption_button"
+                    style="@style/default_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/rounded_corner_orange_default"
+                    android:text="@string/apply_for_adoption"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shelter_address_text" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_turquoise"
+            android:soundEffectsEnabled="true"
+            app:itemIconSize="35dp"
+            app:itemIconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_navigation_user">
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

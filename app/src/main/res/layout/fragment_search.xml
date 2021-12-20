@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.user.search.SearchFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:id="@+id/vaccinated_checkbox"
+            style="@style/label_bold_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="16dp"
+            android:buttonTint="@color/secondary_orange"
+            android:text="@string/vaccinations"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sterilised_checkbox" />
+
+        <CheckBox
+            android:id="@+id/sterilised_checkbox"
+            style="@style/label_bold_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="24dp"
+            android:buttonTint="@color/secondary_orange"
+            android:text="@string/sterilisation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gender_spinner" />
+
+        <include
+            android:id="@+id/action_bar"
+            layout="@layout/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/select_search_parameters_label_text"
+            style="@style/label_bold_extra_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/pick_search_parameters"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/action_bar" />
+
+        <TextView
+            android:id="@+id/city_label_text"
+            style="@style/label_bold_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/city"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select_search_parameters_label_text" />
+
+        <Spinner
+            android:id="@+id/city_spinner"
+            style="@style/label_default_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/city_label_text"
+            app:layout_constraintStart_toEndOf="@+id/city_label_text"
+            app:layout_constraintTop_toBottomOf="@+id/select_search_parameters_label_text"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Spinner
+            android:id="@+id/species_spinner"
+            style="@style/label_default_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/phone_label_text"
+            app:layout_constraintStart_toEndOf="@+id/phone_label_text"
+            app:layout_constraintTop_toBottomOf="@+id/city_spinner"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Spinner
+            android:id="@+id/breed_spinner"
+            style="@style/label_default_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/breed_label_text"
+            app:layout_constraintStart_toEndOf="@+id/breed_label_text"
+            app:layout_constraintTop_toBottomOf="@+id/species_spinner"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Spinner
+            android:id="@+id/gender_spinner"
+            style="@style/label_default_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/gender_label_text"
+            app:layout_constraintStart_toEndOf="@+id/gender_label_text"
+            app:layout_constraintTop_toBottomOf="@+id/age_from_edit"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/phone_label_text"
+            style="@style/label_bold_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/species"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/city_spinner" />
+
+        <TextView
+            android:id="@+id/breed_label_text"
+            style="@style/label_bold_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/breed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/species_spinner" />
+
+        <TextView
+            android:id="@+id/gender_label_text"
+            style="@style/label_bold_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="26dp"
+            android:text="@string/gender"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/age_from_edit" />
+
+        <TextView
+            android:id="@+id/age_label_text"
+            style="@style/label_bold_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:text="@string/age"
+            app:layout_constraintBaseline_toBaselineOf="@+id/age_from_edit"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/from_label_text"
+            style="@style/label_default_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/from"
+            app:layout_constraintBottom_toBottomOf="@+id/age_label_text"
+            app:layout_constraintStart_toEndOf="@+id/age_label_text"
+            app:layout_constraintTop_toBottomOf="@+id/breed_spinner" />
+
+        <TextView
+            android:id="@+id/years_label_text"
+            style="@style/label_default_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/years"
+            app:layout_constraintBottom_toBottomOf="@+id/age_label_text"
+            app:layout_constraintStart_toEndOf="@+id/age_to_edit"
+            app:layout_constraintTop_toBottomOf="@+id/breed_spinner" />
+
+        <TextView
+            android:id="@+id/to_label_text"
+            style="@style/label_default_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/to"
+            app:layout_constraintBottom_toBottomOf="@+id/from_label_text"
+            app:layout_constraintStart_toEndOf="@+id/age_from_edit" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_turquoise"
+            android:soundEffectsEnabled="true"
+            app:itemIconSize="35dp"
+            app:itemIconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/bottom_navigation_user">
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+        <EditText
+            android:id="@+id/age_from_edit"
+            style="@style/label_default_large"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/to_label_text"
+            app:layout_constraintStart_toEndOf="@+id/from_label_text"
+            app:layout_constraintTop_toBottomOf="@+id/breed_spinner"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/age_to_edit"
+            style="@style/label_default_large"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textAlignment="center"
+            app:layout_constraintStart_toEndOf="@+id/to_label_text"
+            app:layout_constraintTop_toBottomOf="@+id/breed_spinner"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/search_button"
+            style="@style/default_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_corner_orange_default"
+            android:text="@string/search"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="TextContrastCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

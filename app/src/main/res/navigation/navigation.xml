@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/signInUserFragment">
+
+    <fragment
+        android:id="@+id/signInUserFragment"
+        android:name="com.example.e_shelter.screens.signin.SignInFragment"
+        android:label="fragment_sign_in_user"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_signInUserFragment_to_signUpUserFragment"
+            app:destination="@id/signUpUserFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_signInUserFragment_to_homeUserFragment"
+            app:destination="@id/homeUserFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/signInUserFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_signInUserFragment_to_homeShelterFragment"
+            app:destination="@id/homeShelterFragment"
+            app:popUpTo="@id/signInUserFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_signInUserFragment_to_signUpShelterAdminFragment"
+            app:destination="@id/signUpShelterAdminFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/signInUserFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpUserFragment"
+        android:name="com.example.e_shelter.screens.user.signup.SignUpUserFragment"
+        android:label="fragment_sign_up_user"
+        tools:layout="@layout/fragment_sign_up_user">
+        <action
+            android:id="@+id/action_signUpUserFragment_to_signInUserFragment"
+            app:destination="@id/signInUserFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeShelterFragment"
+        android:name="com.example.e_shelter.screens.shelteradmin.home.HomeShelterFragment"
+        android:label="fragment_home_shelter"
+        tools:layout="@layout/fragment_home_shelter">
+        <action
+            android:id="@+id/action_homeShelterFragment_to_addEditAnimalFragment"
+            app:destination="@id/addEditAnimalFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeShelterFragment" />
+        <action
+            android:id="@+id/action_homeShelterFragment_to_adoptionApplicationsFragment"
+            app:destination="@id/adoptionApplicationsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeShelterFragment" />
+        <action
+            android:id="@+id/action_homeShelterFragment_to_animalProfileFragment"
+            app:destination="@id/animalProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeShelterFragment" />
+        <action
+            android:id="@+id/action_homeShelterFragment_to_reportFragment"
+            app:destination="@id/reportFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeShelterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeUserFragment"
+        android:name="com.example.e_shelter.screens.user.home.HomeUserFragment"
+        android:label="fragment_home_user"
+        tools:layout="@layout/fragment_home_user">
+        <action
+            android:id="@+id/action_homeUserFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeUserFragment" />
+        <action
+            android:id="@+id/action_homeUserFragment_to_favouritesFragment"
+            app:destination="@id/favouritesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditAnimalFragment"
+        android:name="com.example.e_shelter.screens.shelteradmin.animaladdedit.AddEditAnimalFragment"
+        android:label="fragment_add_edit_animal"
+        tools:layout="@layout/fragment_add_edit_animal">
+        <argument
+            android:name="animalId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_addEditAnimalFragment_to_homeShelterFragment"
+            app:destination="@id/homeShelterFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_addEditAnimalFragment_to_reportFragment"
+            app:destination="@id/reportFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeShelterFragment" />
+        <action
+            android:id="@+id/action_addEditAnimalFragment_to_adoptionApplicationsFragment"
+            app:destination="@id/adoptionApplicationsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeShelterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adoptionApplicationsFragment"
+        android:name="com.example.e_shelter.screens.shelteradmin.adoptionapplications.AdoptionApplicationsFragment"
+        android:label="fragment_adoption_applications"
+        tools:layout="@layout/fragment_adoption_applications">
+        <action
+            android:id="@+id/action_adoptionApplicationsFragment_to_addEditAnimalFragment"
+            app:destination="@id/addEditAnimalFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeShelterFragment" />
+        <action
+            android:id="@+id/action_adoptionApplicationsFragment_to_reportFragment"
+            app:destination="@id/reportFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeShelterFragment" />
+        <action
+            android:id="@+id/action_adoptionApplicationsFragment_to_homeShelterFragment"
+            app:destination="@id/homeShelterFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_adoptionApplicationsFragment_to_animalProfileFragment"
+            app:destination="@id/animalProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/signInUserFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/animalProfileFragment"
+        android:name="com.example.e_shelter.screens.animalprofile.AnimalProfileFragment"
+        android:label="fragment_animal_profile"
+        tools:layout="@layout/fragment_animal_profile" >
+        <argument
+            android:name="animalId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_animalProfileFragment_to_homeShelterFragment"
+            app:destination="@id/homeShelterFragment" />
+        <action
+            android:id="@+id/action_animalProfileFragment_to_reportFragment"
+            app:destination="@id/reportFragment" />
+        <action
+            android:id="@+id/action_animalProfileFragment_to_addEditAnimalFragment"
+            app:destination="@id/addEditAnimalFragment" />
+        <action
+            android:id="@+id/action_animalProfileFragment_to_adoptionApplicationsFragment"
+            app:destination="@id/adoptionApplicationsFragment" />
+        <action
+            android:id="@+id/action_animalProfileFragment_to_favouritesFragment"
+            app:destination="@id/favouritesFragment" />
+        <action
+            android:id="@+id/action_animalProfileFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_animalProfileFragment_to_homeUserFragment"
+            app:destination="@id/homeUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.e_shelter.screens.user.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/searchFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_searchFragment_to_homeUserFragment"
+            app:destination="@id/homeUserFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_searchFragment_to_favouritesFragment"
+            app:destination="@id/favouritesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouritesFragment"
+        android:name="com.example.e_shelter.screens.user.favourites.FavouritesFragment"
+        android:label="fragment_favourites"
+        tools:layout="@layout/fragment_favourites">
+        <action
+            android:id="@+id/action_favouritesFragment_to_animalProfileFragment"
+            app:destination="@id/animalProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_favouritesFragment_to_homeUserFragment"
+            app:destination="@id/homeUserFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_favouritesFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.example.e_shelter.screens.user.searchresult.SearchResultFragment"
+        android:label="fragment_search_result"
+        tools:layout="@layout/fragment_search_result" >
+        <argument
+            android:name="searchModel"
+            app:argType="com.example.e_shelter.screens.user.search.SearchModel" />
+        <action
+            android:id="@+id/action_searchResultFragment_to_homeUserFragment"
+            app:destination="@id/homeUserFragment"
+            app:popUpTo="@id/homeUserFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_searchResultFragment_to_favouritesFragment"
+            app:destination="@id/favouritesFragment"
+            app:popUpTo="@id/homeUserFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_searchResultFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/homeUserFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_searchResultFragment_to_animalProfileFragment"
+            app:destination="@id/animalProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.example.e_shelter.screens.shelteradmin.report.ReportFragment"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report">
+        <action
+            android:id="@+id/action_reportFragment_to_addEditAnimalFragment"
+            app:destination="@id/addEditAnimalFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeShelterFragment" />
+        <action
+            android:id="@+id/action_reportFragment_to_adoptionApplicationsFragment"
+            app:destination="@id/adoptionApplicationsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeShelterFragment" />
+        <action
+            android:id="@+id/action_reportFragment_to_homeShelterFragment"
+            app:destination="@id/homeShelterFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpShelterAdminFragment"
+        android:name="com.example.e_shelter.screens.shelteradmin.signup.SignUpShelterAdminFragment"
+        android:label="fragment_sign_up_shelter_admin"
+        tools:layout="@layout/fragment_sign_up_shelter_admin" >
+        <action
+            android:id="@+id/action_signUpShelterAdminFragment_to_signInUserFragment"
+            app:destination="@id/signInUserFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+</navigation>
