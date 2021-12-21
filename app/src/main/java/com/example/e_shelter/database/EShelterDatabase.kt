@@ -9,7 +9,7 @@ import com.example.e_shelter.database.entities.*
 @Database(
     entities = [AdoptionApplication::class, Animal::class, Favourites::class, User::class,
         Shelter::class, ShelterSignUpApplication::class],
-    version = 19,
+    version = 21,
     exportSchema = false
 )
 

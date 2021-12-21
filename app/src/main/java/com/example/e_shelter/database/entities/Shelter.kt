@@ -11,16 +11,16 @@ data class Shelter(
     val id: Long = 0L,
 
     @ColumnInfo(name = "name")
-    var name: String,
+    var name: String = "",
 
     @ColumnInfo(name = "city")
-    var city: String,
+    var city: String = "",
 
     @ColumnInfo(name = "address")
-    var address: String,
+    var address: String = "",
 
     @ColumnInfo(name = "phone_number")
-    var phoneNumber: String,
+    var phoneNumber: String = "",
 
     @ColumnInfo(name = "logo_pic_path", defaultValue = "NULL")
     @Nullable

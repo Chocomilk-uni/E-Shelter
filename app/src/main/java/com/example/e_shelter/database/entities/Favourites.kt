@@ -9,8 +9,8 @@ import androidx.room.PrimaryKey
     tableName = "favourites_table", foreignKeys = arrayOf(
         ForeignKey(
             entity = User::class,
-            parentColumns = arrayOf("id"),
-            childColumns = arrayOf("user_id"),
+            parentColumns = arrayOf("uid"),
+            childColumns = arrayOf("user_uid"),
             onDelete = ForeignKey.CASCADE,
             onUpdate = ForeignKey.CASCADE
         ),
@@ -27,9 +27,9 @@ data class Favourites(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
 
-    @ColumnInfo(name = "user_id")
-    val userId: Long,
+    @ColumnInfo(name = "user_uid")
+    val userUid: String = "",
 
     @ColumnInfo(name = "animal_id")
-    val animalId: Long
+    val animalId: Long = 0L
 )

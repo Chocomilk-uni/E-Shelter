@@ -48,6 +48,7 @@ class AdoptionApplicationAdapter :
             binding.processApplication.setOnClickListener {
                 item.applicationStatus = "Обработана"
                 App.database.eShelterDatabaseDao.update(item)
+                App.firebaseDatabase.adoptionApplicationFirebase.sendAdoptionApplication(item)
 
                 Snackbar.make(
                     binding.root,

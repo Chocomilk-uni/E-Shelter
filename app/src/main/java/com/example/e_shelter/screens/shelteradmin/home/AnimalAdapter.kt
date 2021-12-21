@@ -53,6 +53,7 @@ class AnimalAdapter : ListAdapter<Animal, AnimalAdapter.ViewHolder>(AnimalDiffCa
 
                     }
                     .setPositiveButton(R.string.yes) { dialog, which ->
+                        App.firebaseDatabase.animalFirebase.deleteAnimal(item)
                         App.database.eShelterDatabaseDao.delete(item)
                     }
                     .show()

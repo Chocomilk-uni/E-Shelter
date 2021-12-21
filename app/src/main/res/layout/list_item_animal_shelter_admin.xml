@@ -20,6 +20,8 @@
             android:layout_height="80dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             android:layout_marginBottom="8dp"
             android:contentDescription="@string/animal_photo"
             android:focusable="true"

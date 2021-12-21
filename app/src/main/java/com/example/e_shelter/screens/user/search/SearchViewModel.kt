@@ -22,7 +22,7 @@ class SearchViewModel : ViewModel() {
             cities.add(city)
         }
 
-        val uniqueBreeds = database.getUniqueCities()
+        val uniqueBreeds = database.getUniqueBreeds()
         breeds.add("Любая")
         for (breed in uniqueBreeds) {
             breeds.add(breed)

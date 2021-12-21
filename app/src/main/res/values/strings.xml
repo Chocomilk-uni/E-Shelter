@@ -68,12 +68,12 @@
     <string name="name">Имя</string>
     <string name="email_exists">Пользователь с данным email уже зарегистрирован в системе</string>
     <string name="phone_exists">Пользователь с данным номером телефона уже зарегистрирован в системе</string>
-    <string name="sign_up_sucess">Регистрация прошла успешно</string>
+    <string name="sign_up_success">Регистрация прошла успешно</string>
     <string name="login_not_exists">Пользователя с данным логином не существует</string>
     <string name="wrong_password">Введён неверный пароль</string>
     <string name="shelter_admin_apply_success">Заявка была успешно сформирована. Ожидайте ответа на указанный email.</string>
     <string name="save_data_success">Данные были сохранены</string>
-    <string name="without_breed">Беспородный(-ая)</string>
+    <string name="without_breed">Порода неизвестна/Беспородный(-ая)</string>
     <string name="current_status">Текущий статус</string>
     <string name="delete_confirmation">Удалить запись?</string>
     <string name="yes">Да</string>
@@ -86,5 +86,8 @@
     <string name="all">Все</string>
     <string name="zero_in_favourites">Список \"Избранного\" пуст.</string>
     <string name="application_date">Дата</string>
-    <string name="zero_applications">Список заявок пусть.</string>
+    <string name="zero_applications">Список заявок пуст.</string>
+    <string name="sign_up_error">При регистрации возникла ошибка. Проверьте корректность введённых данных и попробуйте ещё.</string>
+    <string name="get_report_success">Отчёт был успешно сохранён</string>
+    <string name="get_report_error">Ошибка при формировании отчёта</string>
 </resources>

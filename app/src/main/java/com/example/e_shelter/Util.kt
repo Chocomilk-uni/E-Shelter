@@ -10,18 +10,43 @@ import com.example.e_shelter.database.entities.Shelter
 import java.io.*
 import java.text.SimpleDateFormat
 
+
+object Constants {
+    const val ADMINS_CHILD = "admins"
+    const val USERS_CHILD = "users"
+    const val SHELTERS_CHILD = "shelters"
+    const val ANIMALS_CHILD = "animals"
+    const val ADOPTION_APPLICATIONS_CHILD = "adoption_applications"
+    const val SIGN_UP_APPLICATIONS_CHILD = "shelter_sign_up_applications"
+    const val FAVOURITES_CHILD = "favourites"
+}
+
+
 @SuppressLint("SimpleDateFormat")
 fun convertLongToDateString(systemTime: Long): String {
-    return SimpleDateFormat("yyyy-MM-dd")
+    return SimpleDateFormat("dd-MM-yyyy")
         .format(systemTime).toString()
 }
 
+@SuppressLint("SimpleDateFormat")
+fun convertLongToPeriodDateString(dateFrom: Long, dateTo: Long): String {
+    return SimpleDateFormat("dd-MM-yyyy")
+        .format(dateFrom).toString().plus(" - ").plus(SimpleDateFormat("dd-MM-yyyy")
+            .format(dateTo).toString())
+}
+
 fun getAnimalPicFileName(currentAnimalId: Long?): String {
-    return "animal_photo_".plus(App.userId.toString()).plus("_").plus(currentAnimalId.toString()).plus(".jpg")
+    val firebaseAuth = App.firebaseAuth
+    val currentUser = firebaseAuth.user
+
+    return "animal_photo_".plus(currentUser!!.uid).plus("_").plus(currentAnimalId.toString()).plus(".jpg")
 }
 
 fun getShelterPicFileName(): String {
-    return "shelter_logo_".plus(App.userId.toString()).plus(".jpg")
+    val firebaseAuth = App.firebaseAuth
+    val currentUser = firebaseAuth.user
+
+    return "shelter_logo_".plus(currentUser!!.uid).plus(".jpg")
 }
 
 fun saveToInternalStorage(bitmap: Bitmap, fileName: String): String {
@@ -72,3 +97,12 @@ fun formatShelterName(shelter: Shelter): String {
 fun formatAddress(shelter: Shelter): String {
     return ("г. ").plus(shelter.city).plus(" ").plus(shelter.address)
 }
+
+fun isEmailValid(email: String): Boolean {
+    return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+}
+
+fun isPasswordValid(password: String): Boolean {
+    return password.length >= 6 && password.matches("^[A-Za-z0-9]+\$".toRegex())
+}
+

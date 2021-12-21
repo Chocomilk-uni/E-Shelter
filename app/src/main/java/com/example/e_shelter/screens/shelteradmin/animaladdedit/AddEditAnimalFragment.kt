@@ -12,14 +12,18 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.example.e_shelter.App
 import com.example.e_shelter.MainActivity
 import com.example.e_shelter.R
 import com.example.e_shelter.convertLongToDateString
 import com.example.e_shelter.databinding.FragmentAddEditAnimalBinding
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 
@@ -58,15 +62,30 @@ class AddEditAnimalFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         binding.addEditAnimalViewModel = addEditAnimalViewModel
 
-        if (arguments.animalId > 0)
+        if (arguments.animalId > 0) {
             setProfilePic()
+            if (addEditAnimalViewModel.animal.value!!.breed == "Порода неизвестна/Беспородный(-ая)")
+                binding.withoutBreedCheckbox.isChecked = true
+        }
+
+        binding.withoutBreedCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                binding.breedLabelText.isGone = true
+                binding.breedEdit.isGone = true
+            }
+            else {
+                binding.breedLabelText.isGone = false
+                binding.breedEdit.isGone = false
+            }
+        }
 
         binding.lifecycleOwner = this.viewLifecycleOwner
 
         binding.saveButton.setOnClickListener {
             val name = binding.petNameEdit.text.toString()
             val age = binding.ageEdit.text.toString()
-            val breed = binding.breedEdit.text.toString()
+            var breed = binding.breedEdit.text.toString()
+            if (breed.isEmpty()) breed = "Порода неизвестна/Беспородный(-ая)"
             val description = binding.descriptionEdit.text.toString()
             val isVaccinated = binding.vaccinatedCheckbox.isChecked
             val isSterilised = binding.sterilisedCheckbox.isChecked
@@ -88,10 +107,15 @@ class AddEditAnimalFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         binding.selectAdmissionDateButton.setOnClickListener {
+            val constraintsBuilder =
+                CalendarConstraints.Builder()
+                    .setValidator(DateValidatorPointBackward.now())
+
             val datePicker =
                 MaterialDatePicker.Builder.datePicker()
                     .setTitleText("Выберите дату")
                     .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                    .setCalendarConstraints(constraintsBuilder.build())
                     .build()
 
             datePicker.show(parentFragmentManager, "tag");
@@ -222,7 +246,6 @@ class AddEditAnimalFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
     }
 
-    // TODO: add regex
     private fun checkInput(): Boolean {
         if (addEditAnimalViewModel.profilePic == null) {
             Toast.makeText(activity, "Добавьте фото", Toast.LENGTH_LONG).show()
@@ -236,10 +259,10 @@ class AddEditAnimalFragment : Fragment(), AdapterView.OnItemSelectedListener {
             Toast.makeText(activity, "Введите возраст", Toast.LENGTH_LONG).show()
             return false
         }
-        if (binding.breedEdit.text.toString().trim().isEmpty()) {
+        if (binding.breedEdit.text.toString().trim().isEmpty() && !binding.withoutBreedCheckbox.isChecked) {
             Toast.makeText(
                 activity,
-                "Введите породу. Если порода неизвестна либо отсутвует, впишите вариант \"Беспородный(-ая)\"",
+                "Введите породу. Если порода неизвестна либо отсутвует, выберите вариант \"Порода неизвестна/Беспородный(-ая)\"",
                 Toast.LENGTH_LONG
             ).show()
             return false
@@ -270,12 +293,13 @@ class AddEditAnimalFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
     private fun setupCustomActionBar() {
-        val toolbar = getView()?.findViewById<Toolbar>(R.id.action_bar)
+        val toolbar = view?.findViewById<Toolbar>(R.id.action_bar)
         if (toolbar != null) {
             (requireActivity() as MainActivity).setupActionBar(toolbar)
         }
-        binding.actionBar.backIcon.setOnClickListener { v: View ->
-            v.findNavController().navigateUp()
+        binding.actionBar.exitIcon.setOnClickListener {
+            App.firebaseAuth.signOut()
+            findNavController().navigate(AddEditAnimalFragmentDirections.actionAddEditAnimalFragmentToSignInUserFragment())
         }
     }
 

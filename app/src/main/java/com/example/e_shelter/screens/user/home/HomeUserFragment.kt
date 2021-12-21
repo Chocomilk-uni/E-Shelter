@@ -8,6 +8,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.e_shelter.App
 import com.example.e_shelter.MainActivity
 import com.example.e_shelter.R
 import com.example.e_shelter.databinding.FragmentHomeUserBinding
@@ -56,6 +58,10 @@ class HomeUserFragment : Fragment() {
             (requireActivity() as MainActivity).setupActionBar(toolbar)
         }
         binding.actionBar.backIcon.isGone = true
+        binding.actionBar.exitIcon.setOnClickListener {
+            App.firebaseAuth.signOut()
+            findNavController().navigate(HomeUserFragmentDirections.actionHomeUserFragmentToSignInUserFragment())
+        }
     }
 
     override fun onDestroyView() {

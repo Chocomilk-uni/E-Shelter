@@ -2,8 +2,8 @@ package com.example.e_shelter
 
 import android.app.Application
 import com.example.e_shelter.database.EShelterDatabase
-import com.example.e_shelter.firebase.FirebaseAuth
-import com.example.e_shelter.firebase.FirebaseRepo
+import com.example.e_shelter.firebase.FirebaseAuthRepo
+import com.example.e_shelter.firebase.FirebaseDatabaseRepo
 
 class App : Application() {
 
@@ -14,12 +14,9 @@ class App : Application() {
         lateinit var database: EShelterDatabase
             private set
 
-        // TODO: remove and use firebase
-        var userId: Long = 0L
-
-        lateinit var firebaseAuth: FirebaseAuth
+        lateinit var firebaseAuth: FirebaseAuthRepo
             private set
-        lateinit var firebaseDatabase: FirebaseRepo
+        lateinit var firebaseDatabase: FirebaseDatabaseRepo
             private  set
     }
 
@@ -30,7 +27,7 @@ class App : Application() {
         instance = this
         database = EShelterDatabase.getInstance(instance)
 
-//        firebaseDatabase = FirebaseRepo()
-//        firebaseAuth = FirebaseAuth()
+        firebaseDatabase = FirebaseDatabaseRepo()
+        firebaseAuth = FirebaseAuthRepo()
     }
 }

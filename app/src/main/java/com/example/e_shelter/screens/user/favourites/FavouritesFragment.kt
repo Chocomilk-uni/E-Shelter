@@ -9,6 +9,8 @@ import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.e_shelter.App
 import com.example.e_shelter.MainActivity
 import com.example.e_shelter.R
 import com.example.e_shelter.databinding.FragmentFavouritesBinding
@@ -33,8 +35,14 @@ class FavouritesFragment : Fragment() {
         favouritesViewModel =
             ViewModelProvider(this)[FavouritesViewModel::class.java]
 
-        if (favouritesViewModel.animals.value != null) binding.infoText.isGone = true
-        else binding.favouritesList.isGone = true
+        if (!favouritesViewModel.animalsList.isEmpty()) {
+            binding.infoText.isGone = true
+            binding.favouritesList.isGone = false
+        }
+        else {
+            binding.favouritesList.isGone = true
+            binding.favouritesList.isGone = true
+        }
 
         val adapter = FavouritesAdapter()
         binding.favouritesList.adapter = adapter
@@ -71,8 +79,9 @@ class FavouritesFragment : Fragment() {
         if (toolbar != null) {
             (requireActivity() as MainActivity).setupActionBar(toolbar)
         }
-        binding.actionBar.backIcon.setOnClickListener { v: View ->
-            v.findNavController().navigateUp()
+        binding.actionBar.exitIcon.setOnClickListener {
+            App.firebaseAuth.signOut()
+            findNavController().navigate(FavouritesFragmentDirections.actionFavouritesFragmentToSignInUserFragment())
         }
     }
 

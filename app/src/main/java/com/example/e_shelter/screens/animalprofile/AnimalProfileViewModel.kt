@@ -1,18 +1,22 @@
 package com.example.e_shelter.screens.animalprofile
 
 import android.graphics.Bitmap
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import com.example.e_shelter.*
 import com.example.e_shelter.database.entities.*
-import kotlinx.coroutines.launch
 
 class AnimalProfileViewModel(private val animalId: Long = 0L) : ViewModel() {
 
     private val database = App.database.eShelterDatabaseDao
+    private val firebaseDatabase = App.firebaseDatabase
+    private val firebaseAuth = App.firebaseAuth
+    private lateinit var currentUser: User
     var animal = MutableLiveData<Animal>()
     private var shelter = MutableLiveData<Shelter>()
-    private var currentUser = MutableLiveData<User>()
-    private var favouritesEntry = MutableLiveData<Favourites?>()
+    private var favouritesEntry: Favourites? = null
     var profilePic: Bitmap? = null
     var isAdmin: Boolean = false
     var favouritesEntryExist: Boolean = false
@@ -61,63 +65,53 @@ class AnimalProfileViewModel(private val animalId: Long = 0L) : ViewModel() {
         shelter.value = database.getShelter(animal.value!!.shelterId)
         profilePic = loadImageFromStorage(animal.value!!.profilePicPath!!)
 
-        currentUser.value = database.getUser(App.userId)
-        if (currentUser.value!!.shelterId != null)
-            isAdmin = true
-        else {
-            favouritesEntry.value = database.getFavouritesEntry(currentUser.value!!.id, animal.value!!.id)
-            if (favouritesEntry.value != null) favouritesEntryExist = true
-        }
+        currentUser =  database.getUser(firebaseAuth.user!!.uid)!!
+        if (currentUser.shelterId != null)
+                isAdmin = true
+            else {
+                favouritesEntry = database.getFavouritesEntry(currentUser.uid, animal.value!!.id)
+                if (favouritesEntry != null) favouritesEntryExist = true
+            }
     }
 
     fun onAddToFavourites() {
         if (!favouritesEntryExist) {
             val newFavouritesEntry =
-                Favourites(animalId = animal.value!!.id, userId = currentUser.value!!.id)
+                Favourites(animalId = animal.value!!.id, userUid = currentUser.uid)
 
-            viewModelScope.launch {
-                insert(newFavouritesEntry)
-                favouritesEntryExist = true
-                _addToFavouritesSuccess.value = true
-            }
+            database.insert(newFavouritesEntry)
+            val currentFavouritesEntry = database.getLastFavouritesEntry()
+            firebaseDatabase.favouritesFirebase.sendFavouritesEntry(currentFavouritesEntry!!)
+
+            favouritesEntryExist = true
+            _addToFavouritesSuccess.value = true
         }
 
         else {
-            viewModelScope.launch {
-                delete(favouritesEntry.value!!)
-                favouritesEntryExist = false
-                _deleteFromFavouritesSuccess.value = true
-            }
+            val currentFavouritesEntry = database.getFavouritesEntry(currentUser.uid, animal.value!!.id)
+            database.delete(currentFavouritesEntry!!)
+            firebaseDatabase.favouritesFirebase.deleteFavouritesEntry(currentFavouritesEntry)
+            favouritesEntryExist = false
+            _deleteFromFavouritesSuccess.value = true
         }
     }
 
     fun onApplyForAdoption() {
         if (!checkIfApplicationExist()) {
-            val newAdoptionApplication = AdoptionApplication(name = currentUser.value!!.name!!, phoneNumber = currentUser.value!!.phoneNumber!!,
-            date = System.currentTimeMillis(), animalId = animal.value!!.id, userId = currentUser.value!!.id)
+            val newAdoptionApplication = AdoptionApplication(name = currentUser.name!!, phoneNumber = currentUser.phoneNumber!!,
+            date = System.currentTimeMillis(), animalId = animal.value!!.id, userUid = currentUser.uid)
 
-            viewModelScope.launch {
-                insert(newAdoptionApplication)
-                _applicationCreateSuccess.value = true
-            }
+            database.insert(newAdoptionApplication)
+            val application = database.getLastAdoptionApplication()
+            firebaseDatabase.adoptionApplicationFirebase.sendAdoptionApplication(application!!)
+
+            _applicationCreateSuccess.value = true
         }
         else _applicationAlreadyExistError.value = true
     }
 
     private fun checkIfApplicationExist(): Boolean {
-        val application = database.getApplicationByUserAnimal(currentUser.value!!.id, animal.value!!.id)
+        val application = database.getApplicationByUserAnimal(currentUser.uid, animal.value!!.id)
         return application != null
-    }
-
-    private suspend fun insert(favourite: Favourites) {
-        database.insert(favourite)
-    }
-
-    private suspend fun insert(application: AdoptionApplication) {
-        database.insert(application)
-    }
-
-    private suspend fun delete(favourite: Favourites) {
-        database.delete(favourite)
     }
 }

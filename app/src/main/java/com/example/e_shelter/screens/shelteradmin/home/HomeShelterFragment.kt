@@ -14,6 +14,8 @@ import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.e_shelter.App
 import com.example.e_shelter.MainActivity
 import com.example.e_shelter.R
 import com.example.e_shelter.databinding.FragmentHomeShelterBinding
@@ -154,7 +156,6 @@ class HomeShelterFragment : Fragment() {
         } else binding.addShelterLogoText.isGone = false
     }
 
-    // TODO: add regex
     private fun checkInput(): Boolean {
         if (binding.shelterNameEdit.text.toString().trim().isEmpty()) {
             Toast.makeText(activity, "Введите название приюта", Toast.LENGTH_LONG).show()
@@ -230,7 +231,10 @@ class HomeShelterFragment : Fragment() {
         if (toolbar != null) {
             (requireActivity() as MainActivity).setupActionBar(toolbar)
         }
-        binding.actionBar.backIcon.isGone = true
+        binding.actionBar.exitIcon.setOnClickListener {
+            App.firebaseAuth.signOut()
+            findNavController().navigate(HomeShelterFragmentDirections.actionHomeShelterFragmentToSignInUserFragment())
+        }
     }
 
     private fun setupTheme() {

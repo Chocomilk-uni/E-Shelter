@@ -1,24 +1,26 @@
 package com.example.e_shelter.screens.shelteradmin.home
 
 import android.graphics.Bitmap
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import com.example.e_shelter.*
 import com.example.e_shelter.database.entities.Animal
 import com.example.e_shelter.database.entities.Shelter
-import com.example.e_shelter.database.entities.User
-import kotlinx.coroutines.launch
 
 class HomeShelterViewModel : ViewModel() {
 
     private val database = App.database.eShelterDatabaseDao
 
-    val shelter = MutableLiveData<Shelter>()
-    var animals = database.getAnimalsByShelter(App.userId)
+    var shelter = MutableLiveData<Shelter>()
     var logoPic: Bitmap? = null
+    lateinit var animals: LiveData<List<Animal>>
     lateinit var dogs: LiveData<List<Animal>>
     lateinit var cats: LiveData<List<Animal>>
     lateinit var exotic: LiveData<List<Animal>>
-    private var currentUser = MutableLiveData<User>()
+    private val firebaseDatabase = App.firebaseDatabase
+    private val firebaseAuth = App.firebaseAuth
 
     private var path: String? = null
 
@@ -42,13 +44,15 @@ class HomeShelterViewModel : ViewModel() {
         formatShelterName(shelter!!)
     }
 
-    private fun initializeShelterAndUser() {
-        currentUser.value = database.getUser(App.userId)
-        shelter.value = database.getShelter(currentUser.value!!.shelterId!!)
 
-        dogs = database.getAnimalsBySpecies("Собака", currentUser.value!!.shelterId!!)
-        cats = database.getAnimalsBySpecies("Кот", currentUser.value!!.shelterId!!)
-        exotic = database.getExoticAnimals("Собака","Кот", currentUser.value!!.shelterId!!)
+    private fun initializeShelterAndUser() {
+        val currentUser = database.getUser(firebaseAuth.user!!.uid)
+        shelter.value = database.getShelter(currentUser!!.shelterId!!)
+        animals = database.getAnimalsByShelter(currentUser.shelterId!!)
+
+        dogs = database.getAllAnimalsBySpecies("Собака", currentUser.shelterId!!)
+        cats = database.getAllAnimalsBySpecies("Кот", currentUser.shelterId!!)
+        exotic = database.getAllExoticAnimals("Собака", "Кот", currentUser.shelterId!!)
 
         val shelterLogo = shelter.value!!.logoPic
         if (shelterLogo != null) {
@@ -69,14 +73,10 @@ class HomeShelterViewModel : ViewModel() {
         shelter.value!!.phoneNumber = phoneNumber
         shelter.value!!.logoPic = path
 
-        viewModelScope.launch {
-            update(shelter.value!!)
-            initializeShelterAndUser()
-            _editSuccess.value = true
-        }
-    }
+        database.update(shelter.value!!)
+        firebaseDatabase.shelterFirebase.sendShelter(shelter.value!!)
 
-    private suspend fun update(shelter: Shelter) {
-        database.update(shelter)
+        initializeShelterAndUser()
+        _editSuccess.value = true
     }
 }

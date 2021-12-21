@@ -7,6 +7,7 @@ import com.example.e_shelter.database.entities.AdoptionApplication
 
 class AdoptionApplicationsViewModel : ViewModel() {
     private val database = App.database.eShelterDatabaseDao
+    private val firebaseAuth = App.firebaseAuth
 
     lateinit var applications: LiveData<List<AdoptionApplication>>
 
@@ -15,7 +16,7 @@ class AdoptionApplicationsViewModel : ViewModel() {
     }
 
     private fun initializeUserAndShelter() {
-        val currentUser = database.getUser(App.userId)
-        applications = database.getApplications(currentUser.shelterId!!)
+        val currentUser =  database.getUser(firebaseAuth.user!!.uid)
+        applications = database.getApplications(currentUser!!.shelterId!!)
     }
 }

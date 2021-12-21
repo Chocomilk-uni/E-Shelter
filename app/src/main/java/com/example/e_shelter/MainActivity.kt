@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.example.e_shelter.databinding.ActivityMainBinding
 
@@ -35,5 +34,15 @@ class MainActivity : AppCompatActivity() {
     fun setupActionBar(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
         setupActionBarWithNavController(this, navController)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        App.firebaseAuth.signOut()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        App.firebaseAuth.signOut()
     }
 }

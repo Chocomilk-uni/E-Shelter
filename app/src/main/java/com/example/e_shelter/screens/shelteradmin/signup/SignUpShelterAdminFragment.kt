@@ -62,7 +62,6 @@ class SignUpShelterAdminFragment : Fragment() {
         return binding.root
     }
 
-    // TODO: add regex
     private fun checkInput(): Boolean {
         if (binding.cityEdit.text.toString().trim().isEmpty()) {
             Toast.makeText(activity, "Введите город", Toast.LENGTH_LONG).show()

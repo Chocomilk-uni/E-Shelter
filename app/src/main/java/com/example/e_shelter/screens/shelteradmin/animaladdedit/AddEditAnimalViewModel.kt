@@ -2,19 +2,25 @@ package com.example.e_shelter.screens.shelteradmin.animaladdedit
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import com.example.e_shelter.App
 import com.example.e_shelter.convertLongToDateString
 import com.example.e_shelter.database.entities.Animal
+import com.example.e_shelter.database.entities.User
 import com.example.e_shelter.getAnimalPicFileName
 import com.example.e_shelter.saveToInternalStorage
-import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 
 class AddEditAnimalViewModel(private val animalId: Long = 0L) : ViewModel() {
     private val database = App.database.eShelterDatabaseDao
+    private val firebaseDatabase = App.firebaseDatabase
+    private val firebaseAuth = App.firebaseAuth
+    private var currentUser: User = database.getUser(firebaseAuth.user!!.uid)!!
 
     var animal = MutableLiveData<Animal?>()
     var profilePic: Bitmap? = null
@@ -22,6 +28,7 @@ class AddEditAnimalViewModel(private val animalId: Long = 0L) : ViewModel() {
     lateinit var gender: String
     lateinit var status: String
     var admissionDate: Long? = null
+
 
     private var path: String? = null
 
@@ -100,19 +107,17 @@ class AddEditAnimalViewModel(private val animalId: Long = 0L) : ViewModel() {
                 species = species,
                 status = animalStatus,
                 profilePicPath = path,
-                shelterId = App.userId,
+                shelterId = currentUser.shelterId!!,
                 gender = gender,
                 foundHomeDate = foundHome
             )
+            database.insert(newAnimal)
+            firebaseDatabase.animalFirebase.sendAnimal(database.getLastAnimal()!!)
 
-            viewModelScope.launch {
-                insert(newAnimal)
-                _saveSuccess.value = true
-                _navigateToHome.value = true
-            }
-        }
+            _saveSuccess.value = true
+            _navigateToHome.value = true
 
-        else {
+        } else {
             animal.value!!.name = name
             animal.value!!.age = age
             animal.value!!.breed = breed
@@ -123,25 +128,16 @@ class AddEditAnimalViewModel(private val animalId: Long = 0L) : ViewModel() {
             animal.value!!.species = species
             animal.value!!.status = animalStatus
             animal.value!!.profilePicPath = path
-            animal.value!!.shelterId = App.userId
+            animal.value!!.shelterId = currentUser.shelterId!!
             animal.value!!.foundHomeDate = foundHome
             animal.value!!.gender = gender
 
-            viewModelScope.launch {
-                update(animal.value!!)
-                initializeAnimal()
-                _saveSuccess.value = true
-                _navigateToHome.value = true
-            }
+            database.update(animal.value!!)
+            firebaseDatabase.animalFirebase.sendAnimal(animal.value!!)
+            initializeAnimal()
+            _saveSuccess.value = true
+            _navigateToHome.value = true
         }
-    }
-
-    private suspend fun insert(animal: Animal) {
-        database.insert(animal)
-    }
-
-    private suspend fun update(animal: Animal) {
-        database.update(animal)
     }
 
     private fun getCurrentId(): Long {

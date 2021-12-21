@@ -2,39 +2,42 @@ package com.example.e_shelter.firebase.entities
 
 import com.example.e_shelter.App
 import com.example.e_shelter.Constants
-import com.example.e_shelter.database.entities.Shelter
+import com.example.e_shelter.database.entities.User
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 
-class ShelterFirebase(private val reference: DatabaseReference) {
+class UserFirebase(private val reference: DatabaseReference) {
     val database = App.database.eShelterDatabaseDao
+    var mainChild: String = ""
 
     init {
         subscribeOnDataChanges()
     }
 
-    fun sendShelter(shelter: Shelter) {
-        reference.child(Constants.SHELTERS_CHILD).child(shelter.id.toString()).setValue(shelter)
+    fun sendUser(user: User) {
+        mainChild = if (user.shelterId != null) Constants.ADMINS_CHILD
+        else Constants.USERS_CHILD
+        reference.child(mainChild).child(user.uid).setValue(user)
     }
 
     private fun subscribeOnDataChanges() {
-        reference.child(Constants.SHELTERS_CHILD).addChildEventListener(object : ChildEventListener {
+        val childEventListener = object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                if (snapshot.getValue(Shelter::class.java) != null) {
-                    if (database.getShelter(snapshot.getValue(Shelter::class.java)!!.id) == null) {
-                        database.insert(snapshot.getValue(Shelter::class.java)!!)
+                if (snapshot.getValue(User::class.java) != null) {
+                    if (database.getUser(snapshot.getValue(User::class.java)!!.uid) == null) {
+                        database.insert(snapshot.getValue(User::class.java)!!)
                     }
                 }
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                database.update(snapshot.getValue(Shelter::class.java)!!)
+                snapshot.getValue(User::class.java)?.let { database.update(it) }
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
-                database.deleteShelterById(snapshot.getValue(Shelter::class.java)!!.id)
+                database.deleteUserById(snapshot.getValue(User::class.java)!!.uid)
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
@@ -43,6 +46,9 @@ class ShelterFirebase(private val reference: DatabaseReference) {
             override fun onCancelled(error: DatabaseError) {
             }
 
-        })
+        }
+
+        reference.child(Constants.ADMINS_CHILD).addChildEventListener(childEventListener)
+        reference.child(Constants.USERS_CHILD).addChildEventListener(childEventListener)
     }
 }

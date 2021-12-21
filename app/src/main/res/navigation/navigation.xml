@@ -103,6 +103,9 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/homeShelterFragment" />
+        <action
+            android:id="@+id/action_homeShelterFragment_to_signInUserFragment"
+            app:destination="@id/signInUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeUserFragment"
@@ -127,6 +130,9 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/homeUserFragment" />
+        <action
+            android:id="@+id/action_homeUserFragment_to_signInUserFragment"
+            app:destination="@id/signInUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/addEditAnimalFragment"
@@ -162,6 +168,9 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/homeShelterFragment" />
+        <action
+            android:id="@+id/action_addEditAnimalFragment_to_signInUserFragment"
+            app:destination="@id/signInUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/adoptionApplicationsFragment"
@@ -203,6 +212,9 @@
             app:popUpTo="@id/signInUserFragment"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_adoptionApplicationsFragment_to_signInUserFragment"
+            app:destination="@id/signInUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/animalProfileFragment"
@@ -233,6 +245,9 @@
         <action
             android:id="@+id/action_animalProfileFragment_to_homeUserFragment"
             app:destination="@id/homeUserFragment" />
+        <action
+            android:id="@+id/action_animalProfileFragment_to_signInUserFragment"
+            app:destination="@id/signInUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -266,6 +281,9 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/homeUserFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_signInUserFragment"
+            app:destination="@id/signInUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
@@ -297,6 +315,9 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/homeUserFragment" />
+        <action
+            android:id="@+id/action_favouritesFragment_to_signInUserFragment"
+            app:destination="@id/signInUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchResultFragment"
@@ -341,6 +362,12 @@
             app:launchSingleTop="false"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_searchResultFragment_to_signInUserFragment"
+            app:destination="@id/signInUserFragment" />
+        <action
+            android:id="@+id/action_searchResultFragment_to_signInUserFragment2"
+            app:destination="@id/signInUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/reportFragment"
@@ -373,6 +400,9 @@
             app:launchSingleTop="false"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_reportFragment_to_signInUserFragment"
+            app:destination="@id/signInUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpShelterAdminFragment"

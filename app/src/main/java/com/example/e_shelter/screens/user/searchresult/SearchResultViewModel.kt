@@ -16,7 +16,7 @@ class SearchResultViewModel(searchModel: SearchModel) : ViewModel() {
     init {
         for (animal in allAnimals) {
             val shelter = database.getShelter(animal.shelterId)
-            if (shelter.city == searchModel.city && animal.status == "Ждёт семью") {
+            if (shelter!!.city == searchModel.city && animal.status == "Ждёт семью") {
                 if (animal.species == searchModel.species) {
                     if ((searchModel.gender != "Любой" && animal.gender == searchModel.gender) || searchModel.gender == "Любой") {
                         if ((searchModel.breed != "Любая" && animal.breed == searchModel.breed) || searchModel.breed == "Любая") {

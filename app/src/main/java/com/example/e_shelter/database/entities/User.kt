@@ -16,17 +16,17 @@ import androidx.room.PrimaryKey
     )]
 )
 data class User(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0L,
+    @PrimaryKey
+    val uid: String = "",
 
     @ColumnInfo(name = "password")
-    val password: String,
+    val password: String = "",
 
     @ColumnInfo(name = "phone_number")
     val phoneNumber: String? = null,
 
     @ColumnInfo(name = "email")
-    var email: String,
+    var email: String = "",
 
     @ColumnInfo(name = "name")
     var name: String? = null,

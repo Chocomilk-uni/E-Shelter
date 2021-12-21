@@ -11,18 +11,18 @@ data class ShelterSignUpApplication(
     val id: Long = 0L,
 
     @ColumnInfo(name = "name")
-    val name: String,
+    val name: String = "",
 
     @ColumnInfo(name = "city")
-    val city: String,
+    val city: String = "",
 
     @ColumnInfo(name = "address")
-    val address: String,
+    val address: String = "",
 
     @ColumnInfo(name = "social_links", defaultValue = "NULL")
     @Nullable
     val socialLinks: String? = null,
 
     @ColumnInfo(name = "email")
-    val email: String
+    val email: String = ""
 )

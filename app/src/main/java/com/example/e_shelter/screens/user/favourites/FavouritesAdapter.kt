@@ -14,7 +14,7 @@ import com.example.e_shelter.formatAge
 import com.example.e_shelter.loadImageFromStorage
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class FavouritesAdapter() : ListAdapter<Animal, FavouritesAdapter.ViewHolder>(
+class FavouritesAdapter : ListAdapter<Animal, FavouritesAdapter.ViewHolder>(
     AnimalDiffCallback()
 ) {
 

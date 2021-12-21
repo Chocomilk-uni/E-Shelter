@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.example.e_shelter.App
 import com.example.e_shelter.R
+import com.example.e_shelter.database.entities.Shelter
+import com.example.e_shelter.database.entities.User
 import com.example.e_shelter.databinding.FragmentSignInBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -31,6 +34,20 @@ class SignInFragment : Fragment() {
 
         binding.lifecycleOwner = this.viewLifecycleOwner
 
+        binding.logoText.setOnClickListener {
+            val newShelter = Shelter(name = "Два пса",
+                city = "Москва", address = "ул. Ленина, д. 40", phoneNumber = "89510981264")
+            App.database.eShelterDatabaseDao.insert(newShelter)
+            val currentShelter = App.database.eShelterDatabaseDao.getLastShelter()
+            if (currentShelter != null) {
+                App.firebaseDatabase.shelterFirebase.sendShelter(currentShelter)
+            }
+
+            val newUser = User(uid = "2WrpM2OHNTOMCVEKW2Gd69HWen53", email = "admin@gmail.com", password = "qwerty", shelterId = currentShelter!!.id)
+            App.database.eShelterDatabaseDao.insert(newUser)
+            App.firebaseDatabase.userFirebase.sendUser(newUser)
+        }
+
         binding.signInButton.setOnClickListener {
             val login = binding.loginEdit.text.toString()
             val password = binding.passwordEdit.text.toString()
@@ -38,8 +55,6 @@ class SignInFragment : Fragment() {
             if (checkInput()) {
                 signInViewModel.onSignIn(login, password)
             }
-
-            signInViewModel.doneShowingSnackBar()
         }
 
         signInViewModel.loginNotExist.observe(viewLifecycleOwner, {
@@ -50,31 +65,35 @@ class SignInFragment : Fragment() {
                     Snackbar.LENGTH_SHORT
                 ).show()
             }
+            signInViewModel.doneShowingSnackBar()
         })
 
-        signInViewModel.wrongPassword.observe(viewLifecycleOwner, {
+        signInViewModel.firebaseAuth.signInError.observe(viewLifecycleOwner, {
             if (it == true) {
                 Snackbar.make(
                     requireActivity().findViewById(android.R.id.content),
                     getString(R.string.wrong_password),
                     Snackbar.LENGTH_SHORT
                 ).show()
+                signInViewModel.firebaseAuth.doneShowingSnackBar()
             }
         })
 
-        signInViewModel.navigateToHomeUser.observe(viewLifecycleOwner, {
+        signInViewModel.firebaseAuth.navigateToHomeUser.observe(viewLifecycleOwner, {
             if (it == true) {
                 this.findNavController()
                     .navigate(SignInFragmentDirections.actionSignInUserFragmentToHomeUserFragment())
                 signInViewModel.doneNavigating()
+                signInViewModel.firebaseAuth.doneNavigating()
             }
         })
 
-        signInViewModel.navigateToHomeShelter.observe(viewLifecycleOwner, {
+        signInViewModel.firebaseAuth.navigateToHomeShelter.observe(viewLifecycleOwner, {
             if (it == true) {
                 this.findNavController()
                     .navigate(SignInFragmentDirections.actionSignInUserFragmentToHomeShelterFragment())
                 signInViewModel.doneNavigating()
+                signInViewModel.firebaseAuth.doneNavigating()
             }
         })
 
@@ -92,7 +111,6 @@ class SignInFragment : Fragment() {
     }
 
 
-    // TODO: add regex
     private fun checkInput(): Boolean {
         if (binding.loginEdit.text.toString().trim().isEmpty()) {
             Toast.makeText(activity, "Введите логин", Toast.LENGTH_LONG).show()

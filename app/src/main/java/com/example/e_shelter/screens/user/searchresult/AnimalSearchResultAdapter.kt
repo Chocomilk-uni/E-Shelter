@@ -16,7 +16,7 @@ import com.example.e_shelter.formatAge
 import com.example.e_shelter.loadImageFromStorage
 import com.google.android.material.snackbar.Snackbar
 
-class AnimalSearchResultAdapter() : ListAdapter<Animal, AnimalSearchResultAdapter.ViewHolder>(
+class AnimalSearchResultAdapter : ListAdapter<Animal, AnimalSearchResultAdapter.ViewHolder>(
     AnimalDiffCallback()
 ) {
 
@@ -43,13 +43,19 @@ class AnimalSearchResultAdapter() : ListAdapter<Animal, AnimalSearchResultAdapte
             binding.animalImage.setImageBitmap(loadImageFromStorage(item.profilePicPath!!))
 
             binding.addToFavouritesButton.setOnClickListener {
-                val database = App.database
+                val database = App.database.eShelterDatabaseDao
+                val firebaseAuth = App.firebaseAuth
+                val currentUser = firebaseAuth.user
 
-                val currentFavouritesEntry = App.database.eShelterDatabaseDao.getFavouritesEntry(App.userId, item.id)
+                val currentFavouritesEntry = database.getFavouritesEntry(currentUser!!.uid, item.id)
 
                 if (currentFavouritesEntry == null) {
-                    val newFavouritesEntry = Favourites(userId = App.userId, animalId = item.id)
-                    database.eShelterDatabaseDao.insert(newFavouritesEntry)
+                    val newFavouritesEntry = Favourites(userUid = currentUser.uid, animalId = item.id)
+                    database.insert(newFavouritesEntry)
+                    val favouritesEntry = database.getLastFavouritesEntry()
+
+                    App.firebaseDatabase.favouritesFirebase.sendFavouritesEntry(favouritesEntry!!)
+
                     updateAddToFavButton(item)
                     Snackbar.make(
                         binding.root,
@@ -58,7 +64,9 @@ class AnimalSearchResultAdapter() : ListAdapter<Animal, AnimalSearchResultAdapte
                     ).show()
                 }
                 else {
-                    database.eShelterDatabaseDao.delete(currentFavouritesEntry)
+                    database.delete(currentFavouritesEntry)
+                    App.firebaseDatabase.favouritesFirebase.deleteFavouritesEntry(currentFavouritesEntry)
+
                     updateAddToFavButton(item)
                     Snackbar.make(
                         binding.root,
@@ -90,7 +98,11 @@ class AnimalSearchResultAdapter() : ListAdapter<Animal, AnimalSearchResultAdapte
         }
 
         private fun updateAddToFavButton(item: Animal) {
-            val favouritesEntry = App.database.eShelterDatabaseDao.getFavouritesEntry(App.userId, item.id)
+            val database = App.database.eShelterDatabaseDao
+            val firebaseAuth = App.firebaseAuth
+            val currentUser = firebaseAuth.user
+
+            val favouritesEntry = database.getFavouritesEntry(currentUser!!.uid, item.id)
 
             if (favouritesEntry != null) binding.addToFavouritesButton.setImageDrawable(
                 AppCompatResources.getDrawable(

@@ -9,6 +9,8 @@ import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.e_shelter.App
 import com.example.e_shelter.MainActivity
 import com.example.e_shelter.R
 import com.example.e_shelter.databinding.FragmentSearchResultBinding
@@ -77,8 +79,9 @@ class SearchResultFragment : Fragment() {
         if (toolbar != null) {
             (requireActivity() as MainActivity).setupActionBar(toolbar)
         }
-        binding.actionBar.backIcon.setOnClickListener { v: View ->
-            v.findNavController().navigateUp()
+        binding.actionBar.exitIcon.setOnClickListener {
+            App.firebaseAuth.signOut()
+            findNavController().navigate(SearchResultFragmentDirections.actionSearchResultFragmentToSignInUserFragment())
         }
     }
 

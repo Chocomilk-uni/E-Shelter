@@ -15,30 +15,31 @@ import androidx.room.PrimaryKey
         onUpdate = ForeignKey.CASCADE
     )]
 )
+
 data class Animal(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
 
     @ColumnInfo(name = "name")
-    var name: String,
+    var name: String ="",
 
     @ColumnInfo(name = "age")
-    var age: Int,
+    var age: Int = 0,
 
     @ColumnInfo(name = "breed")
-    var breed: String,
+    var breed: String = "",
 
     @ColumnInfo(name = "is_sterilised")
-    var isSterilised: Boolean,
+    var isSterilised: Boolean = false,
 
     @ColumnInfo(name = "is_vaccinated")
-    var isVaccinated: Boolean,
+    var isVaccinated: Boolean = false,
 
     @ColumnInfo(name = "description")
-    var description: String,
+    var description: String = "",
 
     @ColumnInfo(name = "admission_date")
-    var admissionDate: Long,
+    var admissionDate: Long = 0L,
 
     @ColumnInfo(name = "found_home_date")
     var foundHomeDate: Long? = null,
@@ -48,14 +49,14 @@ data class Animal(
     var profilePicPath: String? = null,
 
     @ColumnInfo(name = "species")
-    var species: String,
+    var species: String = "",
 
     @ColumnInfo(name = "gender")
-    var gender: String,
+    var gender: String = "",
 
     @ColumnInfo(name = "animal_status")
-    var status: String,
+    var status: String = "",
 
     @ColumnInfo(name = "shelter_id")
-    var shelterId: Long
+    var shelterId: Long = 0L
 )
