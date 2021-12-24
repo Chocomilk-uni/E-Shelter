@@ -1,20 +1,13 @@
 package com.example.e_shelter.screens.shelteradmin.animaladdedit
 
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.e_shelter.App
-import com.example.e_shelter.convertLongToDateString
+import com.example.e_shelter.*
 import com.example.e_shelter.database.entities.Animal
 import com.example.e_shelter.database.entities.User
-import com.example.e_shelter.getAnimalPicFileName
-import com.example.e_shelter.saveToInternalStorage
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileNotFoundException
 
 class AddEditAnimalViewModel(private val animalId: Long = 0L) : ViewModel() {
     private val database = App.database.eShelterDatabaseDao
@@ -147,15 +140,6 @@ class AddEditAnimalViewModel(private val animalId: Long = 0L) : ViewModel() {
         } else lastAnimal.id + 1
     }
 
-    private fun loadImageFromStorage(path: String): Bitmap? {
-        try {
-            val file = File(path)
-            return BitmapFactory.decodeStream(FileInputStream(file))
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        }
-        return null
-    }
 
     fun onAttachPic(bitmap: Bitmap) {
         profilePic = bitmap

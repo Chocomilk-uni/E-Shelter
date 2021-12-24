@@ -12,13 +12,7 @@ class SignInViewModel : ViewModel() {
 
     private val _navigateToHomeUser = MutableLiveData<Boolean?>()
 
-    val navigateToHomeUser: LiveData<Boolean?>
-        get() = _navigateToHomeUser
-
     private val _navigateToHomeShelter = MutableLiveData<Boolean?>()
-
-    val navigateToHomeShelter: LiveData<Boolean?>
-        get() = _navigateToHomeShelter
 
     fun doneNavigating() {
         _navigateToHomeUser.value = null

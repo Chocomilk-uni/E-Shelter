@@ -124,10 +124,18 @@ interface EShelterDatabaseDao {
     fun getAllAnimalsBySpeciesList(species: String, shelterId: Long): List<Animal>
 
     @Query("SELECT * from animal_table WHERE species <> :excludeSpeciesFirst AND species <> :excludeSpeciesSecond AND shelter_id = :shelterId")
-    fun getAllExoticAnimalsList(excludeSpeciesFirst: String, excludeSpeciesSecond: String, shelterId: Long): List<Animal>
+    fun getAllExoticAnimalsList(
+        excludeSpeciesFirst: String,
+        excludeSpeciesSecond: String,
+        shelterId: Long
+    ): List<Animal>
 
     @Query("SELECT * from animal_table WHERE species <> :excludeSpeciesFirst AND species <> :excludeSpeciesSecond AND shelter_id = :shelterId")
-    fun getAllExoticAnimals(excludeSpeciesFirst: String, excludeSpeciesSecond: String, shelterId: Long): LiveData<List<Animal>>
+    fun getAllExoticAnimals(
+        excludeSpeciesFirst: String,
+        excludeSpeciesSecond: String,
+        shelterId: Long
+    ): LiveData<List<Animal>>
 
     @Query("SELECT * from animal_table WHERE found_home_date BETWEEN :dateFrom AND :dateTo AND shelter_id = :shelterId")
     fun getAnimalsFoundHomeInDatePeriod(dateFrom: Long, dateTo: Long, shelterId: Long): List<Animal>
